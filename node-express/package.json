@@ -9,7 +9,7 @@
     "dev": "NODE_ENV=development nodemon --watch index.js",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "validate-setup": "node validateSetup.cjs"
+    "validate-setup": "node scripts/validateSetup.cjs"
   },
   "repository": {
     "type": "git",
