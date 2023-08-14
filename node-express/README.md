@@ -24,6 +24,15 @@ PORT=3000
 BASE_URL=localhost
 ```
 
+### Validating setup
+After you've setup your env files run the following the command to check if the files are correct or not
+
+```sh
+npm run validate-setup
+```
+
+This will output any errors with your env files
+
 # Running the project in dev mode
 
 ```sh
