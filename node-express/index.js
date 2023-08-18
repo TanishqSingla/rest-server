@@ -19,5 +19,7 @@ app.listen(process.env.PORT, () => {
 		return;
 	}
 
-	console.log(`Server is running on http://${process.env.BASE_URL}:${process.env.PORT}`);
+	console.log(
+		`Server is running on http://${process.env.BASE_URL}:${process.env.PORT}`,
+	);
 });
