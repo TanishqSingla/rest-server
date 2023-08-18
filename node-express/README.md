@@ -44,3 +44,6 @@ npm run dev
 ```sh
 npm run start
 ```
+
+## NOTE: Problem with git hooks
+This repo is designed to be a group of repo, so the pre-commit hook won't work as they would run the commands against the whole project and since the hooks are designed to run for specific folder, there would be errors while running the hooks.
