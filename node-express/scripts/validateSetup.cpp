@@ -27,23 +27,27 @@ bool isValid(std::string& s) {
   return true;
 }
 
-void read_file(std::string& file) {
+int read_file(const std::string& file) {
   std::ifstream in(file);
   std::string s;
 
   std::regex line_regex("\\w+=\\w+");
 
+  int error = 0;
+
   while(std::getline(in, s)) {
     if(!std::regex_match(s, line_regex)) {
-      exit(4);
+      error = 1;
     }
 
     if(!isValid(s)) {
       std::cout << "\x1b[41m%s\x1b[0m" << file << "is not valid" << "\n";
-      exit(2);
+      error = 1;
     }
   }
   std::cout << "\x1b[42m" << file << "\x1b[0m" <<  "is valid" << "\n";
+
+  return error ? 2 : 0;
 }
 
 int main() {
@@ -53,14 +57,16 @@ int main() {
 
   auto current_path = fs::current_path();
 
-  for(auto& file : fs::directory_iterator(current_path)) {
+  for(const auto& file : fs::directory_iterator(current_path)) {
     if(std::regex_search(file.path().string(), env_file_regex)) {
       env_files.push_back(file.path().string());
     }
   }
 
-  for(auto& env_file : env_files) {
-    read_file(env_file);
+  for(const auto& env_file : env_files) {
+    if(read_file(env_file) == 2) {
+      exit(2);
+    };
   }
 
   if(env_files.size() == 0) {
